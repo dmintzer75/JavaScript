@@ -17,9 +17,18 @@ score0Element.textContent = 0;
 score1Element.textContent = 0;
 diceElement.classList.add("hidden");
 
-const scores = [0, 0];
+let scores = [0, 0];
 let currentScore = 0;
 let activePlayer = 0;
+
+// SWITCH PLAYER
+function switchPlayer() {
+  document.getElementById(`current--${activePlayer}`).textContent = 0;
+  activePlayer = activePlayer === 0 ? 1 : 0;
+  player0.classList.toggle("player--active");
+  player1.classList.toggle("player--active");
+  currentScore = 0;
+}
 
 // ROLLING DICE FUNCTIONALITY
 function rollDice() {
@@ -36,18 +45,37 @@ function rollDice() {
     document.getElementById(`current--${activePlayer}`).textContent =
       currentScore;
   } else {
-    document.getElementById(`score--${activePlayer}`).textContent =
-      currentScore;
-    document.getElementById(`current--${activePlayer}`).textContent = 0;
-    player0.classList.toggle("player--active");
-    player1.classList.toggle("player--active");
-    // Switch Player
-    activePlayer = activePlayer === 0 ? 1 : 0;
-    currentScore = 0;
-
-    // scores[activePlayer] = currentScore;
+    switchPlayer();
   }
-  return number;
+}
+
+function hold() {
+  // 1. Add current score to active player's score
+  scores[activePlayer] += currentScore;
+  document.getElementById(`score--${activePlayer}`).textContent =
+    scores[activePlayer];
+
+  // 2. check if player's score >= 100
+  if (scores[activePlayer] >= 100) {
+    //finish game
+  } else {
+    switchPlayer();
+  }
+}
+
+function newGame() {
+  score0Element.textContent = 0;
+  score1Element.textContent = 0;
+  diceElement.classList.add("hidden");
+
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
 }
 
 btnRoll.addEventListener("click", rollDice);
+btnHold.addEventListener("click", hold);
+btnNew.addEventListener("click", newGame);
+// scores[activePlayer] += currentScore;
+//     document.getElementById(`score--${activePlayer}`).textContent =
+//       scores[activePlayer];

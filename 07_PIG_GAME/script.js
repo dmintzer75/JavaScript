@@ -70,7 +70,7 @@ function hold() {
       scores[activePlayer];
 
     // 2. check if player's score >= 100
-    if (scores[activePlayer] >= 10) {
+    if (scores[activePlayer] >= 100) {
       //finish game
       isPlaying = false;
       diceElement.classList.add("hidden");

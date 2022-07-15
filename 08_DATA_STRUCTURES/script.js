@@ -253,3 +253,47 @@ function checkMiddleSeat(seat) {
 }
 
 checkMiddleSeat("45B");
+
+console.log(airline.toLowerCase());
+console.log("    new string".trim()); // gets rid of blank space
+
+const normalizedEmail = "  Hello@Jonas.IO".toLowerCase().trim();
+console.log(normalizedEmail);
+
+// REPLACING
+const priceGB = "288,97$";
+const priceUS = priceGB.replace("$", "%").replace(",", ".");
+console.log(priceUS);
+
+const phrase = "door, asdjnasf ajsnda snd door";
+console.log(phrase.replace(/door/g, "gate"));
+
+// Boleans
+airline.includes("A");
+airline.endsWith("S");
+airline.startsWith("D");
+
+// SPLIT
+console.log("a+new+string");
+console.log("a+new+string".split("+"));
+
+const [firstName, lastName] = "dario mintzer".split(" ");
+const newName = ["Mr.", firstName, lastName].join(" ");
+console.log(newName);
+
+function capitalize(name) {
+  const names = name.split(" ");
+  console.log(names);
+  const namesUpper = [];
+  for (const n of names) {
+    // namesUpper.push(n[0].toUpperCase() + n.slice(1));
+    namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+  console.log(namesUpper.join(" "));
+}
+capitalize(newName);
+
+// Padding
+console.log("Jonas".padStart(21, "+"));
+
+console.log("dario".repeat(3));
